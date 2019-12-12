@@ -1,33 +1,41 @@
 package Nonogram;
 import java.util.Scanner;
+import Nonogram.Rooster;
 
-public class MainKlasse {
+public class MainKlasse extends Rooster{
     public static void main(String[] args){
         Scanner input = new Scanner(System.in);
         int locatieRij;
-        int locatieKollom;
+        int locatieKolom;
+        int aantalAanpassingen;
+        String keuze = "";
 
-        //Loop rij
+        Rooster rooster = new Rooster();
+        rooster.printMatrix();
+
         do {
-            System.out.println("Geef locatie van vakje van rij: ");
-            while (!input.hasNextInt()) {
-                System.out.println("Fout");
-                input.next();
-            }
-            locatieRij = input.nextInt();
-        } while (locatieRij <= 0 || locatieRij >= 5);
+            System.out.println("Wil je invullen (1) of leegmaken (2) ?");
+            if (input.nextInt() == 1) {
+                System.out.println("Geef de rij: ");
+                locatieRij = input.nextInt() - 1;
 
-        //Loop kollom
-        do {
-                System.out.println("Geef locatie van vakje van Kollom: ");
-            while (!input.hasNextInt()) {
-                System.out.println("Fout");
-                input.next();
-            }
-            locatieKollom = input.nextInt();
-        } while (locatieKollom <= 0 || locatieKollom >= 5);
-        System.out.println("Locatie Vakje: " + locatieRij + "," + locatieKollom);
+                System.out.println("Geef de kolom: ");
+                locatieKolom = input.nextInt() - 1;
+                rooster.vulVakjeIn(locatieRij, locatieKolom);
 
+                System.out.println("Type: 'Stop' om te stoppen of type: 'Doorgaan' om door te gaan");
+                keuze = input.nextLine();
+            } else if (input.nextInt() == 2) {
+                System.out.println("Geef de rij: ");
+                locatieRij = input.nextInt() - 1;
+
+                System.out.println("Geef de kolom: ");
+                locatieKolom = input.nextInt() - 1;
+                rooster.maakVakjeLeeg(locatieRij, locatieKolom);
+
+                System.out.println("Type: 'Stop' om te stoppen of type: 'Doorgaan' om door te gaan");
+                keuze = input.nextLine();
+            }
+        }while(!keuze.equals("Stop"));
     }
 }
-
