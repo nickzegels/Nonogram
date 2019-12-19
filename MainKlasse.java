@@ -42,5 +42,7 @@ public class MainKlasse extends Rooster{
                 keuze = input.nextLine();
             }
         }while(!keuze.equals("Stop"));
+              
+        rooster.checkIfCorrect();
     }
 }
