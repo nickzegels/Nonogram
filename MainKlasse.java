@@ -2,6 +2,7 @@ package Nonogram;
 import java.util.Scanner;
 import Nonogram.Rooster;
 
+
 public class MainKlasse extends Rooster{
     public static void main(String[] args){
         Scanner input = new Scanner(System.in);
@@ -11,7 +12,11 @@ public class MainKlasse extends Rooster{
         String keuze = "";
 
         Rooster rooster = new Rooster();
-        rooster.printMatrix();
+        rooster.printNonogram();
+
+        Rooster oplossing = new Rooster();
+        oplossing.oplossingInvullen();
+
 
         do {
             System.out.println("Wil je invullen (1) of leegmaken (2) ?");
@@ -22,7 +27,7 @@ public class MainKlasse extends Rooster{
                 System.out.println("Geef de kolom: ");
                 locatieKolom = input.nextInt() - 1;
                 rooster.vulVakjeIn(locatieRij, locatieKolom);
-
+                keuze = input.nextLine();
                 System.out.println("Type: 'Stop' om te stoppen of type: 'Doorgaan' om door te gaan");
                 keuze = input.nextLine();
             } else if (input.nextInt() == 2) {
