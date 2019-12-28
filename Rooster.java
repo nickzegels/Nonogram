@@ -1,26 +1,10 @@
 package Nonogram;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Rooster {
     String[][] rooster = new String[7][7];
     String[][] oplossing = new String[7][7];
-
-    public void printNonogram(){
-        for (int i = 0; i < rooster.length; i++) {
-            for (int j = 0; j < rooster.length; j++) {
-                rooster[i][j] = "    ";
-            }
-        }
-
-        vulIn(rooster);
-
-        for (int i = 0; i < rooster.length; i++) {
-            for (int j = 0; j < rooster.length; j++) {
-                System.out.print(rooster[i][j]);
-            }
-            System.out.println("");
-        }
-    }
 
     public void vulVakjeIn(int locatieRij, int locatieKolom){
         int rij = locatieRij;
@@ -40,7 +24,24 @@ public class Rooster {
         int rij = locatieRij;
         int kolom = locatieKolom;
 
-        rooster[rij][kolom] = "0   ";
+        rooster[rij + 2][kolom + 2] = "    ";
+
+        for (int i = 0; i < rooster.length; i++) {
+            for (int j = 0; j < rooster.length; j++) {
+                System.out.print(rooster[i][j]);
+            }
+            System.out.println("");
+        }
+    }
+
+    public void printNonogram(){
+        for (int i = 0; i < rooster.length; i++) {
+            for (int j = 0; j < rooster.length; j++) {
+                rooster[i][j] = "    ";
+            }
+        }
+
+        vulIn(rooster);
 
         for (int i = 0; i < rooster.length; i++) {
             for (int j = 0; j < rooster.length; j++) {
@@ -81,7 +82,6 @@ public class Rooster {
         oplossing[1][4] = "1   ";
         oplossing[1][5] = "2   ";
         oplossing[1][6] = "4   ";
-        oplossing[1][6] = "2   ";
         oplossing[2][0] = "2   ";
         oplossing[3][0] = "1   ";
         oplossing[4][0] = "1   ";
@@ -93,10 +93,14 @@ public class Rooster {
     }
 
     public void checkIfCorrect(){
-        if(rooster.equals(oplossing)){
-            System.out.println("Je bent gewonnen !");
-        } else {
-            System.out.println("Probeer opnieuw.");
+        int counter = 0;
+        for (int i = 0; i < rooster.length; i++) {
+            for (int j = 0; j < rooster.length; j++) {
+                if(rooster[i][j].equals(oplossing[i][j])){
+                    counter++;
+                }
+            }
         }
+        System.out.println(counter);
     }
 }
