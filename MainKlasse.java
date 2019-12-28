@@ -1,4 +1,6 @@
 package Nonogram;
+import java.util.Arrays;
+import java.util.Objects;
 import java.util.Scanner;
 import Nonogram.Rooster;
 
@@ -17,9 +19,8 @@ public class MainKlasse extends Rooster{
         Rooster oplossing = new Rooster();
         oplossing.oplossingInvullen();
 
-
         do {
-            System.out.println("Wil je invullen (1) of leegmaken (2) ?");
+            System.out.println("Wil je invullen (1) of leegmaken (eender welke geheel getal1) ?");
             if (input.nextInt() == 1) {
                 System.out.println("Geef de rij: ");
                 locatieRij = input.nextInt() - 1;
@@ -28,21 +29,21 @@ public class MainKlasse extends Rooster{
                 locatieKolom = input.nextInt() - 1;
                 rooster.vulVakjeIn(locatieRij, locatieKolom);
                 keuze = input.nextLine();
-                System.out.println("Type: 'Stop' om te stoppen of type: 'Doorgaan' om door te gaan");
+                System.out.println("Type: 'Stop' om te stoppen of Enter");
                 keuze = input.nextLine();
-            } else if (input.nextInt() == 2) {
+            } else {
                 System.out.println("Geef de rij: ");
                 locatieRij = input.nextInt() - 1;
 
                 System.out.println("Geef de kolom: ");
                 locatieKolom = input.nextInt() - 1;
                 rooster.maakVakjeLeeg(locatieRij, locatieKolom);
-
-                System.out.println("Type: 'Stop' om te stoppen of type: 'Doorgaan' om door te gaan");
+                keuze = input.nextLine();
+                System.out.println("Type: 'Stop' om te stoppen of Enter");
                 keuze = input.nextLine();
             }
         }while(!keuze.equals("Stop"));
-              
+
         rooster.checkIfCorrect();
     }
 }
