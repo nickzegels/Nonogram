@@ -12,7 +12,12 @@ public class MainKlasse extends Rooster{
         int locatieKolom;
         int aantalAanpassingen;
         String keuze = "";
-
+        
+        Nonogram nono = new Nonogram();
+        System.out.println("Dit zijn de spelregels:");
+        nono.geefSpelregels();
+        System.out.println();
+        
         Rooster rooster = new Rooster();
         rooster.printNonogram();
 
