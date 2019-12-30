@@ -13,11 +13,11 @@ public class MainKlasse extends Rooster{
         int aantalAanpassingen;
         String keuze = "";
 
+        Rooster correct = new Rooster();
+        correct.correctInvullen();
+
         Rooster rooster = new Rooster();
         rooster.printNonogram();
-
-        Rooster oplossing = new Rooster();
-        oplossing.oplossingInvullen();
 
         do {
             System.out.println("Wil je invullen (1) of leegmaken (eender welke geheel getal1) ?");
