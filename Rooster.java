@@ -1,7 +1,5 @@
 package Nonogram;
-import java.util.Arrays;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 
 public class Rooster {
     String[][] rooster = new String[7][7];
@@ -60,19 +58,6 @@ public class Rooster {
         }
 
         vulIn(correct);
-        correct[2][2] = "X   ";
-        correct[3][2] = "X   ";
-        correct[2][3] = "X   ";
-        correct[4][2] = "X   ";
-        correct[6][2] = "X   ";
-        correct[6][3] = "X   ";
-        correct[6][4] = "X   ";
-        correct[2][5] = "X   ";
-        correct[3][5] = "X   ";
-        correct[2][6] = "X   ";
-        correct[3][6] = "X   ";
-        correct[4][6] = "X   ";
-        correct[5][6] = "X   ";
     }
 
     private void vulIn(String[][] nonogram) {
@@ -93,10 +78,27 @@ public class Rooster {
         nonogram[6][1] = "1   ";
     }
 
+    private void vulOplossing(String[][] nonogram) {
+        correct[2][2] = "X   ";
+        correct[3][2] = "X   ";
+        correct[2][3] = "X   ";
+        correct[4][2] = "X   ";
+        correct[6][2] = "X   ";
+        correct[6][3] = "X   ";
+        correct[6][4] = "X   ";
+        correct[2][5] = "X   ";
+        correct[3][5] = "X   ";
+        correct[2][6] = "X   ";
+        correct[3][6] = "X   ";
+        correct[4][6] = "X   ";
+        correct[5][6] = "X   ";
+    }
+
     public void checkIfCorrect(){
         vulIn(correct);
-        int roosterArray[] = new int[20];
-        int correctArray[]= new int[20];;
+        vulOplossing(correct);
+        List<Integer> roosterList = new ArrayList<Integer>();
+        List<Integer> correctList = new ArrayList<Integer>();
 
         for (int i = 2; i < rooster.length; i++) {
             for (int j = 2; j < rooster.length; j++) {//voor elke waarde in de matrix
@@ -105,7 +107,7 @@ public class Rooster {
                 }else if(rooster[i][j].equals("    ")){
                     rooster[i][j] = "0";
                 }
-                correctArray[i] = (Integer.parseInt(rooster[i][j]));
+                roosterList.add(Integer.parseInt(rooster[i][j]));
             }
         }
 
@@ -119,11 +121,14 @@ public class Rooster {
                 else if (correct[i][j].equals("X   ")) {
                     correct[i][j] = "1";
                 }
-
-                correctArray[j] = (Integer.parseInt(rooster[i][j]));
+                correctList.add(Integer.parseInt(correct[i][j]));
             }
         }
-        if(Arrays.toString(roosterArray) == Arrays.toString(correctArray)){
+
+        System.out.println(roosterList);
+        System.out.println(correctList);
+
+        if(roosterList.equals(correctList)){
             System.out.println("U bent gewonnen");
         } else{
             System.out.println("U bent verloren");
